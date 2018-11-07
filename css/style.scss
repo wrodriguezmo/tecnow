@@ -1,0 +1,41 @@
+#contain {
+    // display: flex;
+    // flex-wrap: wrap;
+    
+    #filters {
+        display: block
+    }
+
+    #programs {
+        display: block;
+        display: flex;
+        flex-wrap: wrap;
+
+        program {
+            flex-grow: 1;
+            padding: 0px 1em;
+            border: 1px solid;
+            margin: 0.5em;
+            height: min-content;
+            text-align: center;
+            .contain-courses {
+                max-height: 100px;
+                overflow-y: scroll;
+                .course {
+                    border: 1px dotted lightgrey;
+                    margin: 5px;
+                    padding: 5px;
+                    h4 {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+    #courses {
+        .subcur {
+            border: 1px solid black;
+            float: left;
+        }
+    }
+}

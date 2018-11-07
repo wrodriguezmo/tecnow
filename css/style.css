@@ -1,0 +1,27 @@
+#contain #filters {
+  display: block; }
+#contain #programs {
+  display: block;
+  display: flex;
+  flex-wrap: wrap; }
+  #contain #programs program {
+    flex-grow: 1;
+    padding: 0px 1em;
+    border: 1px solid;
+    margin: 0.5em;
+    height: min-content;
+    text-align: center; }
+    #contain #programs program .contain-courses {
+      max-height: 100px;
+      overflow-y: scroll; }
+      #contain #programs program .contain-courses .course {
+        border: 1px dotted lightgrey;
+        margin: 5px;
+        padding: 5px; }
+        #contain #programs program .contain-courses .course h4 {
+          margin: 0; }
+#contain #courses .subcur {
+  border: 1px solid black;
+  float: left; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="js/filter.js"></script>
+</head>
+
+<body ng-app="app">
+    <div id="contain" ng-controller="filters">
+        <div id="switch">
+            <fieldset>
+                    <legend>Seleccione qué quiere ver {{switch}}</legend>
+            
+                    <div>
+                        <input type="radio" id="program" name="toSee" ng-model="switch" value="program"/>
+                        <label for="program">Programas</label>
+                    </div>
+            
+                    <div>
+                        <input type="radio" id="cursos" name="toSee" ng-model="switch" value="course"/>
+                        <label for="cursos">Cursos</label>
+                    </div>
+                </fieldset>
+        </div>
+        <div class="row header" id="filters">
+            <div class="select-filters">
+                <select name="facultad" id="facultad" ng-model="search.facultad" ng-change="change()">
+                    <option value="">Todos</option>
+                    <option ng-repeat="obj in listObj | unique:'facultad'" ng-value="obj.facultad">{{obj.facultad}}</option>
+                </select>
+            </div>
+            <div class="select-filters">
+                <select name="nivel" id="nivel" ng-model="search.nivel">
+                    <option value="">Todos</option>
+                    <option ng-repeat="obj in listObj | unique:'nivel'" ng-value="obj.nivel">{{obj.nivel}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div ng-if="switch=='program'" id="programs">
+            <program ng-repeat="obj in listObj | filter:search:strict" ng-click="changeVisibility(obj)">
+                <h3>{{obj.title}}</h3> <a href="{{obj.url}}">Ficha</a>
+                <hr>
+                <div ng-if="obj.showCourse" class="contain-courses">
+                    <div class="course" ng-repeat="course in obj.courses">
+                        <h4>{{course.name}}</h4><a href="{{obj.url}}">Ficha</a>
+                    </div>
+                </div>
+            </program>
+        </div>
+
+        <div ng-if="switch=='course'" id="courses">
+            <div class="cur" ng-repeat="obj in listObj | filter:search:strict">
+                <div class="subcur" ng-repeat="course in obj.courses" >
+                    <h3>{{course.name}}</h3> <a href="{{course.url}}">Ficha</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
